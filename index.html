@@ -35,3 +35,23 @@
                   <option>Nettoyage</option>
                   <option>Autre</option>
                 </select>
+                </label>
+              <label>Photo (URL)<input type="url" name="photo" /></label>
+              <img id="photoPreview" class="photo-preview hidden" alt="Preview" />
+              <label>Email<input type="email" name="email" required /></label>
+              <label>Téléphone<input type="tel" name="phone" pattern="^[0-9+()\\-\\s]{6,25}$" /></label>
+
+              <fieldset id="experiences">
+                <legend>Expériences professionnelles</legend>
+                <div class="exp-list"></div>
+                <button type="button" id="addExpBtn">Ajouter expérience</button>
+              </fieldset>
+
+              <div class="actions" style="display:flex;gap:8px;margin-top:12px">
+                <button type="submit" class="primary">Enregistrer</button>
+                <button type="button" id="cancelBtn">Annuler</button>
+              </div>
+            </form>
+          </div>
+        </div>
+    </aside>
