@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WorkSphere - Office Seating Planner</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-</body>
-</html>
+
+  <div class="container">
+    <aside class="sidebar">
+      <header>
+        <h1>WorkSphere</h1>
+        <button id="addWorkerBtn" class="primary">Add New Worker</button>
+      </header>
+
+      <section class="unassigned">
+        <h2>Unassigned Staff</h2>
+        <div id="unassignedList" class="list"></div>
+      </section>
+              <div id="modal" class="modal hidden" role="dialog" aria-hidden="true">
+          <div class="modal-content">
+            <button class="close" id="closeModal">&times;</button>
+            <h2 id="modalTitle">Ajouter un employé</h2>
+            <form id="workerForm">
+              <label>Nom<input type="text" name="name" required pattern=".{2,100}" /></label>
+              <label>Rôle
+                <select name="role" required>
+                  <option value="">-- choisir --</option>
+                  <option>Receptionniste</option>
+                  <option>Technicien IT</option>
+                  <option>Agent de sécurité</option>
+                  <option>Manager</option>
+                  <option>Nettoyage</option>
+                  <option>Autre</option>
+                </select>
