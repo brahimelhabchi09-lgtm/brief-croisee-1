@@ -41,3 +41,23 @@
       border-radius: 4px;
       min-height: 100px;
     }
+    .list .worker {
+      background: rgba(255,255,255,0.2);
+      padding: 8px;
+      margin-bottom: 8px;
+      border-radius: 4px;
+      cursor: grab;
+    }
+    .plan {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .plan header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .plan h2 { font-size: 22px; }
