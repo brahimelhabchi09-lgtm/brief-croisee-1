@@ -61,3 +61,24 @@
       align-items: center;
     }
     .plan h2 { font-size: 22px; }
+#floor {
+      flex: 1;
+      background-image: url("plan-69159a65c5684763515973.jpg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      display: grid;
+      grid-template-columns: 0.8fr 1fr 1fr 1fr 1fr; 
+      grid-template-rows: 1fr 1fr 1fr;
+      padding: 20px;
+    }
+
+    .zone {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
