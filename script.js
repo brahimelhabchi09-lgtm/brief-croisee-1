@@ -327,3 +327,57 @@ function addToZone(zone, worker) {
         displayZoneWorkers();
     }
 }
+
+
+let btns = document.querySelectorAll(".add-zone-btn")
+btns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        let zone = btn.parentElement.dataset.zone
+        afficherZoneList(zone)
+    })
+})
+
+function displayZoneWorkers() {
+    let zones = document.querySelectorAll(".zone")
+
+    zones.forEach((zone) => {
+        let oldZoneWorkers = zone.querySelectorAll(".zone-worker")
+        oldZoneWorkers.forEach((worker) => {
+            worker.remove();
+        })
+        let id = zone.id
+        let zoneWorkers = workers.filter((worker) => {
+            return worker.status === id
+        })
+
+        if (zoneWorkers.length > 0) {
+            zoneWorkers.forEach((worker) => {
+                let div = document.createElement("div")
+                div.className = "drawer zone-worker"
+                div.id = `zone-${worker.id}`
+                div.innerHTML = `
+                        <div class="profile-detail">
+                            <img id="detailPhoto" src="${worker.url}" alt="photo" />
+                            <button class="close-zone-worker">&times;</button>
+                        </div>
+        `
+                div.querySelector(".close-zone-worker").addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    div.remove();
+                    let activeWorker = workers.find((w) => {
+                        return w.id === worker.id
+                    })
+                    activeWorker.status = "insigned";
+                    localStorage.setItem("workers", JSON.stringify(workers))
+                    displayWorkerList();
+                })
+
+                div.addEventListener("click", () => {
+                    afficherInfo(worker);
+                })
+
+                zone.appendChild(div);
+            })
+        }
+    })
+}
