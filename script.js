@@ -291,3 +291,39 @@ function afficherZoneList(zone) {
 
     document.body.appendChild(workersModals)
 }
+
+
+function addToZone(zone, worker) {
+    let zoneDiv = document.getElementById(zone);
+    let capacity = parseInt(zoneDiv.dataset.capacity);
+    if (zoneDiv.querySelectorAll(".zone-worker").length < capacity) {
+        let div = document.createElement("div")
+        div.className = "drawer zone-worker"
+        div.id = `zone-${worker.id}`
+        div.innerHTML = `
+                        <div class="profile-detail">
+                            <img id="detailPhoto" src="${worker.url}" alt="photo" />
+                            <button class="close-zone-worker">&times;</button>
+                        </div>
+                    
+        `
+        div.querySelector(".close-zone-worker").addEventListener("click", () => {
+            div.remove();
+            let activeWorker = workers.find((w) => {
+                return w.id === worker.id
+            })
+            activeWorker.status = "insigned";
+            localStorage.setItem("workers", JSON.stringify(workers))
+            displayWorkerList();
+        })
+        zoneDiv.appendChild(div);
+        let listWorker = document.getElementById(`drawer-${worker.id}`)
+        listWorker.remove();
+        let activeWorker = workers.find((w) => {
+            return w.id === worker.id
+        })
+        activeWorker.status = zone;
+        localStorage.setItem("workers", JSON.stringify(workers))
+        displayZoneWorkers();
+    }
+}
