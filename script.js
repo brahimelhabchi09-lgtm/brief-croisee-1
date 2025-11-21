@@ -177,3 +177,28 @@ function displayWorkerList() {
 }
 
 displayWorkerList();
+
+ajoutExp.addEventListener("click", () => {
+    const exp = document.createElement("div")
+    exp.className = "Expérience"
+    exp.innerHTML = `
+                                    <h3>
+                                        Expérience ${expIndex}
+                                    </h3>
+                                    <label for="titre">titre</label>
+                                    <input id="titre-${expIndex}" type="text" required>
+                                    <p id="titreErreur-${expIndex}" class="hidden"></p>
+                                    <label for="entreprise">entreprise</label>
+                                    <input id="entreprise-${expIndex}"  type="text" required>
+                                    <p  id="entrepriseErreur-${expIndex}" class="hidden"></p>
+                                    <label for="dateDebut">date de début</label>
+                                    <input  id="dateDebut-${expIndex}" type="date" required>
+                                    <p id="dateDebutErreur-${expIndex}"class="hidden"></p>
+                                    <label for="dateFin">date de Fin</label>
+                                    <input id="dateFin-${expIndex}" type="date" required>
+                                    <p  id="dateFinErreur-${expIndex}" class="hidden"></p>
+                        
+    `
+    listExp.appendChild(exp);
+    expIndex++;
+})
