@@ -236,3 +236,58 @@ function afficherZoneList(zone) {
             return (worker.role === "Agent de sécurité" || worker.role === "Manager" || worker.role === "Technicien IT") && worker.status !== "archives"
         })
     }
+
+
+    
+    let workersModals = document.createElement("div")
+    workersModals.className = "modal"
+
+    workersModals.innerHTML = `<div class="modal-content">
+                    <button class="close" id="closeWorkersModal">&times;</button>
+                    <h2 >Ajouter un employé</h2>
+                    <div class="workers-list"> </div>
+                </div>
+                `
+    let closeWorkersModal = workersModals.querySelector("#closeWorkersModal")
+    closeWorkersModal.addEventListener("click", () => {
+        workersModals.remove()
+    })
+    let modalContent = workersModals.querySelector(".modal-content .workers-list")
+    if (filterworkers.length > 0) {
+        filterworkers.forEach((worker) => {
+            let div = document.createElement("div")
+            div.className = "drawer"
+            div.id = `drawer-${worker.id}`
+            div.innerHTML = `
+                        <div class="profile-detail">
+                            <img id="detailPhoto" src="${worker.url}" alt="photo" />
+                            <h3 id="detailName">${worker.name}</h3>
+                            <p id="detailRole">${worker.role}</p>
+                            <p id="detailContact">${worker.numero}</p>
+                            <h4>Expériences</h4>
+                            <ul id="detailExps">
+                                ${worker.Expériences.length > 0 ? worker.Expériences.map(exp => {
+                return `
+                                         <li>Titre: ${exp.titre}<br> Entreprise: ${exp.entreprise}<br> Date Debut: ${exp.dateDebut}<br> Date Fin: ${exp.dateFin}</li>
+                                        `
+            }).join("")
+                    : "<li>Aucune experiences</li>"
+                }
+                            </ul>
+                        </div>
+                    
+        `
+            div.addEventListener("click", () => {
+                addToZone(zone, worker);
+                workersModals.remove();
+            })
+            modalContent.appendChild(div)
+        })
+    } else {
+        modalContent.innerHTML = "<p>Aucun Employee</p>"
+
+
+    }
+
+    document.body.appendChild(workersModals)
+}
