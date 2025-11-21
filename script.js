@@ -238,7 +238,7 @@ function afficherZoneList(zone) {
     }
 
 
-    
+
     let workersModals = document.createElement("div")
     workersModals.className = "modal"
 
@@ -380,4 +380,40 @@ function displayZoneWorkers() {
             })
         }
     })
+}
+
+
+displayZoneWorkers();
+
+function afficherInfo(worker) {
+    let infoModal = document.createElement("div")
+    infoModal.className = "modal"
+
+    infoModal.innerHTML = `<div class="modal-content">
+                    <button class="close" id="closeWorkersModal">&times;</button>
+                    <h2 >INfo</h2>
+                    <div >
+                        <img src="${worker.url}" alt="photo" />
+                        <h3>${worker.name}</h3>
+                        <p>${worker.role}</p>
+                        <p>${worker.numero}</p>
+                        <h4>Expériences</h4>
+                        <ul>
+                            ${worker.Expériences.length > 0 ? worker.Expériences.map(exp => {
+        return `
+                                         <li>Titre: ${exp.titre}<br> Entreprise: ${exp.entreprise}<br> Date Debut: ${exp.dateDebut}<br> Date Fin: ${exp.dateFin}</li>
+                                        `
+    }).join("")
+            : "<li>Aucune experiences</li>"
+        }
+                        </ul>
+                    </div>
+                </div>
+                `
+    let closeWorkersModal = infoModal.querySelector("#closeWorkersModal")
+    closeWorkersModal.addEventListener("click", () => {
+        infoModal.remove()
+    })
+
+    document.body.appendChild(infoModal)
 }
