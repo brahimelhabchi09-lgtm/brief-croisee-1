@@ -202,3 +202,37 @@ ajoutExp.addEventListener("click", () => {
     listExp.appendChild(exp);
     expIndex++;
 })
+
+
+function afficherZoneList(zone) {
+    let filterworkers = [];
+    if (zone === "conference") {
+        filterworkers = workers.filter((worker) => {
+            return (worker.role === "Technicien IT" || worker.role === "Manager" || worker.role === "Nettoyage") && worker.status !== "conference"
+        })
+    }
+    else if (zone === "reception") {
+        filterworkers = workers.filter((worker) => {
+            return (worker.role === "Receptionniste" || worker.role === "Manager" || worker.role === "Nettoyage") && worker.status !== "reception"
+        })
+    }
+    else if (zone === "servers") {
+        filterworkers = workers.filter((worker) => {
+            return (worker.role === "Technicien IT" || worker.role === "Manager" || worker.role === "Nettoyage") && worker.status !== "servers"
+        })
+    }
+    else if (zone === "security") {
+        filterworkers = workers.filter((worker) => {
+            return (worker.role === "Agent de sécurité" || worker.role === "Manager" || worker.role === "Nettoyage") && worker.status !== "security"
+        })
+    }
+    else if (zone === "staffroom") {
+        filterworkers = workers.filter((worker) => {
+            return (worker.role === "Agent de sécurité" || worker.role === "Manager" || worker.role === "Nettoyage" || worker.role === "Technicien IT") && worker.status !== "staffroom"
+        })
+    }
+    else if (zone === "archives") {
+        filterworkers = workers.filter((worker) => {
+            return (worker.role === "Agent de sécurité" || worker.role === "Manager" || worker.role === "Technicien IT") && worker.status !== "archives"
+        })
+    }
