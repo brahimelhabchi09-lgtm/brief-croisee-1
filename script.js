@@ -128,3 +128,52 @@ formModal.addEventListener("submit", (e) => {
     ajoutModal.classList.add("hidden");
     displayWorkerList();
 })
+
+const photoWorker = document.getElementById("photo");
+const photoPreviewWorker = document.getElementById("photoPreview");
+
+photoWorker.addEventListener("input", () => {
+    photoPreviewWorker.src = photoWorker.value;
+})
+
+
+function displayWorkerList() {
+    listModal.innerHTML = ""
+    let listWorkers = workers.filter((worker) => {
+        return worker.status === "insigned"
+    })
+    if (listWorkers.length > 0) {
+        listWorkers.forEach((worker) => {
+            let div = document.createElement("div")
+            div.className = "drawer"
+            div.id = `drawer-${worker.id}`
+            div.innerHTML = `
+                        <div class="profile-detail">
+                            <img id="detailPhoto" src="${worker.url}" alt="photo" />
+                            <h3 id="detailName">${worker.name}</h3>
+                            <p id="detailRole">${worker.role}</p>
+                            <p id="detailContact">${worker.numero}</p>
+                            <h4>Expériences</h4>
+                            <ul id="detailExps">
+                                ${worker.Expériences.length > 0 ? worker.Expériences.map(exp => {
+                return `
+                                         <li>Titre: ${exp.titre}<br> Entreprise: ${exp.entreprise}<br> Date Debut: ${exp.dateDebut}<br> Date Fin: ${exp.dateFin}</li>
+                                        `
+            }).join("")
+                    : "<li>Aucune experiences</li>"
+                }
+                            </ul>
+                        </div>
+        `
+            div.addEventListener("click", () => {
+                afficherInfo(worker);
+            })
+
+            listModal.appendChild(div)
+        })
+    } else {
+        listModal.innerHTML = "<p>Aucun Employee</p>"
+    }
+}
+
+displayWorkerList();
