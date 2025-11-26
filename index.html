@@ -1,105 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WorkSphere - Office Seating Planner</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkSphere - Office Seating Planner</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <div class="container">
-    <aside class="sidebar">
-      <header>
-        <h1>WorkSphere</h1>
-        <button id="addWorkerBtn" class="primary">Add New Worker</button>
-      </header>
+    <div class="container">
+        <aside class="sidebar">
+            <header>
+                <h1>WorkSphere</h1>
+                <button id="addWorkerBtn" class="primary">Add New Worker</button>
+            </header>
 
-      <section class="unassigned">
-        <h2>Unassigned Staff</h2>
-        <div id="unassignedList" class="list"></div>
-      </section>
-              <div id="modal" class="modal hidden" role="dialog" aria-hidden="true">
-          <div class="modal-content">
-            <button class="close" id="closeModal">&times;</button>
-            <h2 id="modalTitle">Ajouter un employé</h2>
-            <form id="workerForm">
-              <label>Nom<input type="text" name="name" required pattern=".{2,100}" /></label>
-              <label>Rôle
-                <select name="role" required>
-                  <option value="">-- choisir --</option>
-                  <option>Receptionniste</option>
-                  <option>Technicien IT</option>
-                  <option>Agent de sécurité</option>
-                  <option>Manager</option>
-                  <option>Nettoyage</option>
-                  <option>Autre</option>
-                </select>
-                </label>
-              <label>Photo (URL)<input type="url" name="photo" /></label>
-              <img id="photoPreview" class="photo-preview hidden" alt="Preview" />
-              <label>Email<input type="email" name="email" required /></label>
-              <label>Téléphone<input type="tel" name="phone" pattern="^[0-9+()\\-\\s]{6,25}$" /></label>
+            <section class="unassigned">
+                <h2>Unassigned Staff</h2>
+                <div id="unassignedList" class="list">
+            </section>
+            <div id="modal" class="modal hidden" role="dialog" aria-hidden="true">
+                <div class="modal-content">
+                    <button class="close" id="closeModal">&times;</button>
+                    <h2 id="modalTitle">Ajouter un employé</h2>
+                    <form id="workerForm">
+                        <label>Nom</label>
+                        <input type="text" name="name" id="name" required  />
+                        <p id="nameEreur" class="hidden"></p>
+                        <label>Role</label>
+                        <select name="role" id="role" required>
+                            <option value="">-- choisir --</option>
+                            <option>Receptionniste</option>
+                            <option>Technicien IT</option>
+                            <option>Agent de sécurité</option>
+                            <option>Manager</option>
+                            <option>Nettoyage</option>
+                            <option>Autre</option>
+                        </select>
+                        <label>Photo (URL)</label><input type="url" name="photo" id="photo" />
+                        <img id="photoPreview" class="photo-preview hidden" alt="Preview" />
+                        <label>Email</label><input type="email" name="email" id="email" required />
+                        <p id="emailEreur" class="hidden"></p>
+                        <label>Téléphone</label><input type="tel" name="phone" id="numero" />
+                        <p id="numeroEreur" class="hidden"></p>
 
-              <fieldset id="experiences">
-                <legend>Expériences professionnelles</legend>
-                <div class="exp-list"></div>
-                <button type="button" id="addExpBtn">Ajouter expérience</button>
-              </fieldset>
+                        <fieldset id="experiences">
+                            <legend>Expériences professionnelles</legend>
+                            <div id="exp-list">
+                            </div>
+                            <button type="button" id="addExpBtn">Ajouter expérience</button>
 
-              <div class="actions" style="display:flex;gap:8px;margin-top:12px">
-                <button type="submit" class="primary">Enregistrer</button>
-                <button type="button" id="cancelBtn">Annuler</button>
-              </div>
-            </form>
-          </div>
-        </div>
-    </aside>
-     <section class="plan" id="plan">
-      <header>
-        <h2>Work Area</h2>
-      </header>
+                        </fieldset>
 
-      <div id="floor">
-        <div class="zone open"       id="conference" data-zone="conference" data-capacity="6">
-          Salle de conférence
-          <button class="add-zone-btn">+</button>
+                        <div class="actions" style="display:flex;gap:8px;margin-top:12px">
+                            <button type="submit" class="primary">Enregistrer</button>
+                            <button type="button" id="cancelBtn">Annuler</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </aside>
+        <section class="plan" id="plan">
+            <header>
+                <h2>Work Area</h2>
+            </header>
+
+            <div id="floor">
+                <div class="zone open" id="conference" data-zone="conference" data-capacity="6">
+                    Salle de conférence
+                    <button class="add-zone-btn">+</button>
+                </div>
+                <div class="zone open" id="reception" data-zone="reception" data-capacity="2">
+                    Réception
+                    <button class="add-zone-btn">+</button>
+                </div>
+                <div class="zone restricted" id="servers" data-zone="servers" data-capacity="2">
+                    Salle de serveurs
+                    <button class="add-zone-btn">+</button>
+                </div>
+                <div class="zone restricted" id="security" data-zone="security" data-capacity="3">
+                    Salle de sécurité
+                    <button class="add-zone-btn">+</button>
+                </div>
+                <div class="zone open" id="staffroom" data-zone="staffroom" data-capacity="4">
+                    Salle du personnel
+                    <button class="add-zone-btn">+</button>
+                </div>
+                <div class="zone open" id="archives" data-zone="archives" data-capacity="2">
+                    Archives
+                    <button class="add-zone-btn">+</button>
+                </div>
+            </div>
+        </section>
+        <div id="drawer" class="drawer hidden" aria-hidden="true">
+            <button class="close" id="closeDrawer"></button>
+            <div class="profile-detail">
+                <img id="detailPhoto" alt="photo" />
+                <h3 id="detailName"></h3>
+                <p id="detailRole"></p>
+                <p id="detailContact"></p>
+                <h4 style="color: blueviolet;">Expériences</h4>
+                <ul id="detailExps"></ul <p id="detailLocation">
+                </p>
+                <button id="removeBtn" class="danger">Remove from zone</button>
+            </div>
         </div>
-        <div class="zone open"       id="reception"  data-zone="reception"  data-capacity="2">
-          Réception
-          <button class="add-zone-btn">+</button>
-        </div>
-        <div class="zone restricted" id="servers"    data-zone="servers"    data-capacity="2">
-          Salle de serveurs
-          <button class="add-zone-btn">+</button>
-        </div>
-        <div class="zone restricted" id="security"   data-zone="security"   data-capacity="3">
-          Salle de sécurité
-          <button class="add-zone-btn">+</button>
-        </div>
-        <div class="zone open"       id="staffroom"  data-zone="staffroom"  data-capacity="4">
-          Salle du personnel
-          <button class="add-zone-btn">+</button>
-        </div>
-        <div class="zone open"       id="archives"   data-zone="archives"   data-capacity="2">
-          Archives
-          <button class="add-zone-btn">+</button>
-        </div>
-      </div>
-    </section>
-    <div id="drawer" class="drawer hidden" aria-hidden="true">
-      <button class="close" id="closeDrawer"></button>
-      <div class="profile-detail">
-        <img id="detailPhoto" alt="photo"/>
-        <h3 id="detailName"></h3>
-        <p id="detailRole"></p>
-        <p id="detailContact"></p>
-        <h4>Expériences</h4>
-        <ul id="detailExps"></ul
-        <p id="detailLocation"></p>
-        <button id="removeBtn" class="danger">Remove from zone</button>
-      </div>
     </div>
-  </div>
+    <script src="script.js"></script>
 </body>
+
 </html>

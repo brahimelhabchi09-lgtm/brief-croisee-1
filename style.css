@@ -19,7 +19,7 @@
  }
 
  aside.sidebar {
-     width: 300px;
+     width: fit-content;
      background: #2c3e50;
      color: white;
      padding: 20px;
@@ -81,8 +81,8 @@
 
  #floor {
      flex: 1;
-     background-image: url("plan-69159a65c5684763515973.jpg");
-     background-size: contain;
+     background-image: url("plan.2.png");
+     background-size:cover;
      background-repeat: no-repeat;
      background-position: center;
      display: grid;
@@ -103,8 +103,8 @@
 
  .add-zone-btn {
      position: absolute;
-     top: 8px;
-     right: 8px;
+     top: 50%;
+     right:50%;
      width: 30px;
      height: 30px;
      background: #3498db;
@@ -266,4 +266,8 @@
    display: flex; 
    flex-direction: column;
    justify-content: space-between;  
+}
+#unassignedList{
+    overflow-y:scroll;
+    max-height:60vh;
 }
