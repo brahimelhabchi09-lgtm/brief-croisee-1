@@ -445,3 +445,39 @@ img.floor {
     cursor: pointer;
     display: flex;
 }
+@media (max-width: 420px) {
+  :root { --gap: 10px; }
+
+  .modal .modal-content {
+    padding: 12px;
+  }
+
+  #floor {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .zone p { font-size: 0.95rem; padding: 8px; }
+  .add-zone-btn { width: 36px; height: 36px; font-size: 18px; top: 8px; right: 8px; }
+  #workerForm label { font-size: 1rem; padding-top: 0.6em; }
+}
+
+
+.drawer .profile-detail img,
+.zone-worker img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+#unassignedList, .modal-content ul {
+  max-height: 48vh;
+  overflow: auto;
+}
+
+.profile-detail h3, .profile-detail p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
