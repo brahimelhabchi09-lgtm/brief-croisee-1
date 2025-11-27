@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WorkSphere - Office Seating Planner</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+
 </head>
 
 <body>
@@ -21,13 +23,13 @@
                 <h2>Unassigned Staff</h2>
                 <div id="unassignedList" class="list">
             </section>
-            <div id="modal" class="modal hidden" role="dialog" aria-hidden="true">
+            <div id="modal" class="modal " role="dialog" aria-hidden="true">
                 <div class="modal-content">
                     <button class="close" id="closeModal">&times;</button>
                     <h2 id="modalTitle">Ajouter un employé</h2>
                     <form id="workerForm">
                         <label>Nom</label>
-                        <input type="text" name="name" id="name" required  />
+                        <input type="text" name="name" id="name" required />
                         <p id="nameEreur" class="hidden"></p>
                         <label>Role</label>
                         <select name="role" id="role" required>
@@ -44,13 +46,15 @@
                         <label>Email</label><input type="email" name="email" id="email" required />
                         <p id="emailEreur" class="hidden"></p>
                         <label>Téléphone</label><input type="tel" name="phone" id="numero" />
-                        <p id="numeroEreur" class="hidden"></p>
+                        <p id="numeroEreur" class=""></p>
 
                         <fieldset id="experiences">
                             <legend>Expériences professionnelles</legend>
                             <div id="exp-list">
                             </div>
-                            <button type="button" id="addExpBtn">Ajouter expérience</button>
+                            <div class="btntest">
+                                <button type="button" id="addExpBtn">Ajouter expérience</button>
+                            </div>
 
                         </fieldset>
 
@@ -69,27 +73,27 @@
 
             <div id="floor">
                 <div class="zone open" id="conference" data-zone="conference" data-capacity="6">
-                    Salle de conférence
+                    <p>Salle de conférence</p>
                     <button class="add-zone-btn">+</button>
                 </div>
                 <div class="zone open" id="reception" data-zone="reception" data-capacity="2">
-                    Réception
+                    <p>Réception</p>
                     <button class="add-zone-btn">+</button>
                 </div>
                 <div class="zone restricted" id="servers" data-zone="servers" data-capacity="2">
-                    Salle de serveurs
+                    <p>Salle de serveurs</p>
                     <button class="add-zone-btn">+</button>
                 </div>
                 <div class="zone restricted" id="security" data-zone="security" data-capacity="3">
-                    Salle de sécurité
+                    <p>Salle de sécurité</p>
                     <button class="add-zone-btn">+</button>
                 </div>
                 <div class="zone open" id="staffroom" data-zone="staffroom" data-capacity="4">
-                    Salle du personnel
+                    <p>Salle du personnel</p>
                     <button class="add-zone-btn">+</button>
                 </div>
                 <div class="zone open" id="archives" data-zone="archives" data-capacity="2">
-                    Archives
+                    <p>Archives</p>
                     <button class="add-zone-btn">+</button>
                 </div>
             </div>
@@ -108,7 +112,7 @@
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+
 </body>
 
 </html>

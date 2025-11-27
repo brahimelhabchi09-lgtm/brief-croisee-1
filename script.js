@@ -277,6 +277,8 @@ function afficherZoneList(zone) {
                         </div>
                     
         `
+
+
             div.addEventListener("click", () => {
                 addToZone(zone, worker);
                 workersModals.remove();
@@ -391,14 +393,14 @@ function afficherInfo(worker) {
 
     infoModal.innerHTML = `<div class="modal-content">
                     <button class="close" id="closeWorkersModal">&times;</button>
-                    <h2 >INfo</h2>
+                    <h2 >Info</h2>
                     <div >
-                        <img src="${worker.url}" alt="photo" />
-                        <h3>${worker.name}</h3>
-                        <p>${worker.role}</p>
-                        <p>${worker.numero}</p>
+                        <img id="detailPhoto"  src="${worker.url}" alt="photo" />
+                        <h3 id="detailName">${worker.name}</h3>
+                        <p id="detailRole">${worker.role}</p>
+                        <p id="detailContact">${worker.numero}</p>
                         <h4>Expériences</h4>
-                        <ul>
+                        <ul id="detailExps">
                             ${worker.Expériences.length > 0 ? worker.Expériences.map(exp => {
         return `
                                          <li>Titre: ${exp.titre}<br> Entreprise: ${exp.entreprise}<br> Date Debut: ${exp.dateDebut}<br> Date Fin: ${exp.dateFin}</li>
